@@ -48,6 +48,7 @@ public class User {
     private String authenticationToken;
     @ManyToMany(mappedBy = "assignedUsers")
     private Set<Task> tasks;
+
     public User() {
         super();
     }
