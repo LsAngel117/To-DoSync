@@ -17,7 +17,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping({"/","listar",""})
+    @GetMapping({"listar"})
     public String listarUsers(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
         Pageable pageRequest = PageRequest.of(page, 5);
         Page<User> users = userService.findAll(pageRequest);

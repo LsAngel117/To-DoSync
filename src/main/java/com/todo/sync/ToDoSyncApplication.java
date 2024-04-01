@@ -2,13 +2,13 @@ package com.todo.sync;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
-@SpringBootApplication
+@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 public class ToDoSyncApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(ToDoSyncApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ToDoSyncApplication.class, args);
+    }
 
 }
 
