@@ -42,8 +42,9 @@ public class User {
     private boolean available;
     @Column(name = "fecha_registro")
     private LocalDateTime registrationDate;
-    @Column(name = "rol")
-    private String role;
+    @ManyToOne
+    @JoinColumn(name = "rol_id")
+    private Role role;
     @Column(name = "token_autenticacion")
     private String authenticationToken;
     @ManyToMany(mappedBy = "assignedUsers")

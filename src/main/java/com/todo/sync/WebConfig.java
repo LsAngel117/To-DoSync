@@ -1,14 +1,15 @@
 package com.todo.sync;
 
+import nz.net.ultraq.thymeleaf.layoutdialect.LayoutDialect;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.CacheControl;
-import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.resource.PathResourceResolver;
-import org.springframework.web.servlet.resource.VersionResourceResolver;
+import org.thymeleaf.spring6.SpringTemplateEngine;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -30,6 +31,10 @@ public class WebConfig implements WebMvcConfigurer {
                                 : new ClassPathResource("/static/fonts/boxicons.woff2");
                     }
                 });
+    }
+    @Bean
+    public LayoutDialect layoutDialect() {
+        return new LayoutDialect();
     }
 }
 

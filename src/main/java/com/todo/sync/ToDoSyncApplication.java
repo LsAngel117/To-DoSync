@@ -9,7 +9,6 @@ public class ToDoSyncApplication {
     public static void main(String[] args) {
         SpringApplication.run(ToDoSyncApplication.class, args);
     }
-
 }
 
 //validar campos de las entidades (NotEmpty, NotNull, Password y fechas)
