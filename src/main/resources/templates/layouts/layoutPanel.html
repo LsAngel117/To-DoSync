@@ -2,7 +2,11 @@
 <html lang="es"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      class="light-style layout-menu-fixed layout-compact">
+      class="light-style layout-navbar-fixed layout-menu-fixed layout-compact"
+      dir="ltr"
+      data-assets-path="/static/"
+      data-theme="theme-default"
+      data-template="vertical-menu-template">
 <head>
     <meta charset="UTF-8"/>
     <meta
@@ -23,23 +27,28 @@
             href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
             rel="stylesheet"/>
 
-    <link rel="stylesheet" href="/static/css/boxicons.css"/>
+    <!-- Icons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/static/css/vendor/boxicons.css"/>
+    <link rel="stylesheet" href="/static/css/vendor/fontawesome.css" />
+    <link rel="stylesheet" href="/static/css/vendor/flag-icons.css" />
 
     <!-- Core CSS -->
-    <link rel="stylesheet" href="/static/css/core.css" class="template-customizer-core-css"/>
-    <link rel="stylesheet" href="/static/css/theme-default.css" class="template-customizer-theme-css"/>
+    <link rel="stylesheet" href="/static/css/vendor/core.css" class="template-customizer-core-css"/>
+    <link rel="stylesheet" href="/static/css/vendor/theme-default.css" class="template-customizer-theme-css"/>
     <link rel="stylesheet" href="/static/css/demo.css"/>
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="/static/css/perfect-scrollbar.css"/>
-    <link rel="stylesheet" href="/static/css/apex-charts.css"/>
+    <link rel="stylesheet" href="/static/css/vendor/libs/perfect-scrollbar.css"/>
+    <link rel="stylesheet" href="/static/css/vendor/libs/typeahead.css" />
+    <link rel="stylesheet" href="/static/css/vendor/libs/apex-charts.css"/>
 
     <!-- Page CSS -->
 
     <!-- Helpers -->
-    <script src="/static/js/helpers.js"></script>
+    <script src="/static/js/vendor/helpers.js"></script>
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!-- <script src="/static/js/vendor/template-customizer.js"></script> -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="/static/js/config.js"></script>
 </head>
@@ -80,24 +89,26 @@
 <!-- / Layout wrapper -->
 
 
-            <script src="/static/js/jquery.js"></script>
-            <script src="/static/js/popper.js"></script>
-            <script src="/static/js/bootstrap.js"></script>
-            <script src="/static/js/perfect-scrollbar.js"></script>
-            <script src="/static/js/menu.js"></script>
+<script src="/static/js/vendor/libs/jquery.js"></script>
+<script src="/static/js/vendor/libs/popper.js"></script>
+<script src="/static/js/vendor/bootstrap.js"></script>
+<script src="/static/js/vendor/libs/perfect-scrollbar.js"></script>
+<script src="/static/js/vendor/libs/hammer.js"></script>
+<script src="/static/js/vendor/libs/i18n.js"></script>
+<script src="/static/js/vendor/libs/typeahead.js"></script>
+<script src="/static/js/vendor/menu.js"></script>
 
-            <!-- endbuild -->
+<!-- endbuild -->
 
-            <!-- Vendors JS -->
-            <script src="/static/js/apexcharts.js"></script>
+<!-- Vendors JS -->
+<script src="/static/js/vendor/libs/apexcharts.js"></script>
 
-            <!-- Main JS -->
-            <script src="/static/js/main.js"></script>
+<!-- Main JS -->
+<script src="/static/js/main.js"></script>
 
-            <!-- Page JS -->
-            <script src="/static/js/dashboards-analytics.js"></script>
 
-            <!-- Place this tag in your head or just before your close body tag. -->
-            <script async defer src="https://buttons.github.io/buttons.js"></script>
+<!-- Page JS -->
+<script src="/static/js/dashboards-analytics.js"></script>
+
 </body>
 </html>
