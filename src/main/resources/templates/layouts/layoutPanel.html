@@ -43,6 +43,17 @@
     <link rel="stylesheet" href="/static/css/vendor/libs/typeahead.css" />
     <link rel="stylesheet" href="/static/css/vendor/libs/apex-charts.css"/>
 
+    <link rel="stylesheet" href="/static/css/datatables/datatables.bootstrap5.css">
+    <link rel="stylesheet" href="/static/css/datatables/responsive.bootstrap5.css">
+    <link rel="stylesheet" href="/static/css/datatables/datatables.checkboxes.css">
+    <link rel="stylesheet" href="/static/css/datatables/buttons.bootstrap5.css">
+    <link rel="stylesheet" href="/static/css/vendor/libs/flatpickr.css" />
+    <!-- Row Group CSS -->
+    <link rel="stylesheet" href="/static/css/vendor/libs/rowgroup.bootstrap5.css">
+
+    <!-- Form Validation -->
+    <link rel="stylesheet" href="/static/css/vendor/libs/form-validation.css"/>
+
     <!-- Page CSS -->
 
     <!-- Helpers -->
@@ -71,6 +82,7 @@
                 <!-- Content -->
                 <!-- <div th:replace="~{pages/panelContent::panel}"></div> -->
                 <div layout:fragment="panel"></div>
+                <div layout:fragment="taskList"></div>
                 <!-- / Content -->
 
             <!-- Footer -->
@@ -103,12 +115,22 @@
 <!-- Vendors JS -->
 <script src="/static/js/vendor/libs/apexcharts.js"></script>
 
+<script src="/static/js/datatables/datatables-bootstrap5.js"></script>
+<!-- Flat Picker -->
+<script src="/static/js/vendor/libs/moment.js"></script>
+<script src="/static/js/vendor/libs/flatpickr.js"></script>
+
+<!-- Form Validation -->
+<script src="/static/js/vendor/libs/popular.js"></script>
+<script src="/static/js/vendor/libs/bootstrap5.js"></script>
+<script src="/static/js/vendor/libs/auto-focus.js"></script>
 <!-- Main JS -->
 <script src="/static/js/main.js"></script>
 
 
 <!-- Page JS -->
 <script src="/static/js/dashboards-analytics.js"></script>
+<script src="/static/js/datatables/tables-datatables-basic.js"></script>
 
 </body>
 </html>

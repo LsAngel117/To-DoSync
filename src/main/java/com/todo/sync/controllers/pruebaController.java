@@ -16,6 +16,11 @@ public class pruebaController {
         return "pages/panel";
     }
 
+    @GetMapping("tasklist")
+    public String taskList() {
+        return "pages/taskList";
+    }
+
     /*@GetMapping("lay")
     public String layo() {
         return "layouts/layout";
