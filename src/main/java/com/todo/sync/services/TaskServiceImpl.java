@@ -1,7 +1,7 @@
 package com.todo.sync.services;
 
-import com.todo.sync.entities.User;
-import com.todo.sync.repository.UserRepository;
+import com.todo.sync.entities.Task;
+import com.todo.sync.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,29 +11,34 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class UserServiceImp implements UserService {
+public class TaskServiceImpl implements TaskService{
 
     @Autowired
-    private UserRepository userRepository;
+    private TaskRepository taskRepository;
 
     @Override
     @Transactional(readOnly = true)
-    public List<User> findAll() {
-        return userRepository.findAll();
+    public List<Task> getAllTask() {
+        return taskRepository.findAll();
     }
+
     @Override
-    public Page<User> findAll(Pageable pageable) {
+    public Page<Task> getAllTask(Pageable pageable) {
         return null;
     }
+
     @Override
-    public void save(User user) {
+    public void save(Task task) {
+        taskRepository.save(task);
     }
+
     @Override
-    public User findOne(Long id) {
-        return null;
+    public Task findOne(Long id) {
+        return taskRepository.findById(id).orElse(null);
     }
+
     @Override
     public void delete(Long id) {
-
+        taskRepository.deleteById(id);
     }
 }

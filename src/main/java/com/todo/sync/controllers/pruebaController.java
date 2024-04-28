@@ -16,10 +16,10 @@ public class pruebaController {
         return "pages/panel";
     }
 
-    @GetMapping("tasklist")
+    /*@GetMapping("tasklist")
     public String taskList() {
         return "pages/taskList";
-    }
+    }*/
 
     /*@GetMapping("lay")
     public String layo() {
