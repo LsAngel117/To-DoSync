@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="card" th:fragment="taskTable">
+    <div class="card-datatable table-responsive">
+        <div class="dataTables_wrapper dt-bootstrap5 no-footer">
+            <div class="card-header flex-column flex-md-row">
+                <h5 class="card-title" th:text="${titulo}">UwU</h5>
+                <div class="dt-action-buttons text-end pt-3 pt-md-0">
+                    <div class="dt-buttons btn-group flex-wrap">
+                        <div class="btn-group">
+                            <button class="btn buttons-collection dropdown-toggle btn-label-primary me-2"
+                                    tabindex="0"
+                                    aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog"
+                                    aria-expanded="false"><span><i class="bx bx-export me-sm-1"></i> <span
+                                    class="d-none d-sm-inline-block">Exportar</span></span></button>
+                        </div>
+                        <button class="btn btn-secondary create-new btn-primary" tabindex="0"
+                                aria-controls="DataTables_Table_0"
+                                type="button"><span><i class="bx bx-plus me-sm-1"></i> <span
+                                class="d-none d-sm-inline-block">Añadir nueva tarea</span></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="dataTables_length" id="DataTables_Table_0_length">
+                        <label>Mostrar
+                            <select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0"
+                                    class="form-select">
+                                <option value="7">7</option>
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="75">75</option>
+                                <option value="100">100</option>
+                            </select> entradas
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 d-flex justify-content-center justify-content-md-end">
+                    <div id="DataTables_Table_0_filter" class="dataTables_filter">
+                        <label>Buscar:
+                            <input type="search" class="form-control"
+                                   placeholder="" aria-controls="DataTables_Table_0"
+                                   style="margin-left: .5em;
+                                              display: inline-block;
+                                              width: auto;">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <table class="table border-top dataTable no-footer dtr-column">
+                <thead>
+                <tr>
+                    <th class="sorting">ID</th>
+                    <th class="sorting">Título</th>
+                    <th class="sorting">Prioridad</th>
+                    <th class="sorting">Fecha de Creación</th>
+                    <th class="sorting">Fecha de Vencimiento</th>
+                    <th class="sorting">Categoría</th>
+                    <th class="sorting">Estado</th>
+                    <th>Acción</th>
+                </tr>
+                </thead>
+                <tbody style="white-space: nowrap;">
+                <tr class="odd" th:each="task : ${tasksList}">
+                    <td th:text="${task.id}"></td>
+                    <td th:text="${task.title}"></td>
+                    <td th:text="${task.priority}"></td>
+                    <td th:text="${task.creationDate}"></td>
+                    <td th:text="${task.dueDate}"></td>
+                    <td th:text="${task.category}"></td>
+                    <td th:text="${task.status}"></td>
+                    <td>
+                        <div class="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                    data-bs-toggle="dropdown">
+                                <i class="bx bx-dots-vertical-rounded"></i>
+                            </button>
+                            <a href="javascript:;" class="btn btn-sm btn-icon item-edit">
+                                <i class="bx bxs-edit"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="javascript:void(0);">
+                                    <i class="bx bx-edit-alt me-1"></i> Detalles</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-danger" href="javascript:void(0);">
+                                    <i class="bx bx-trash me-1"></i> Borrar</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">
+                        Mostrando 1 a 7 de 100 entradas
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate">
+                        <ul class="pagination">
+                            <li class="paginate_button page-item previous disabled"
+                                id="DataTables_Table_0_previous">
+                                <a aria-controls="DataTables_Table_0" aria-disabled="true" role="link"
+                                   data-dt-idx="previous" tabindex="-1"
+                                   class="page-link"
+                                   style="padding: .625rem;
+                                              min-width: calc(2rem + calc(0px* 2));
+                                              font-size: .75rem;
+                                              line-height: 1;">Anterior</a>
+                            </li>
+                            <li class="paginate_button page-item active">
+                                <a href="#" aria-controls="DataTables_Table_0" role="link" aria-current="page"
+                                   data-dt-idx="0" tabindex="0" class="page-link">1</a>
+                            </li>
+                            <li class="paginate_button page-item ">
+                                <a href="#" aria-controls="DataTables_Table_0" role="link" data-dt-idx="1"
+                                   tabindex="0" class="page-link">2</a>
+                            </li>
+                            <li class="paginate_button page-item ">
+                                <a href="#" aria-controls="DataTables_Table_0" role="link" data-dt-idx="2"
+                                   tabindex="0" class="page-link">3</a>
+                            </li>
+                            <li class="paginate_button page-item ">
+                                <a href="#" aria-controls="DataTables_Table_0" role="link" data-dt-idx="3"
+                                   tabindex="0" class="page-link">4</a>
+                            </li>
+                            <li class="paginate_button page-item ">
+                                <a href="#" aria-controls="DataTables_Table_0" role="link" data-dt-idx="4"
+                                   tabindex="0" class="page-link">5</a>
+                            </li>
+                            <li class="paginate_button page-item disabled" id="DataTables_Table_0_ellipsis">
+                                <a aria-controls="DataTables_Table_0" aria-disabled="true" role="link"
+                                   data-dt-idx="ellipsis" tabindex="-1" class="page-link">…</a>
+                            </li>
+                            <li class="paginate_button page-item ">
+                                <a href="#" aria-controls="DataTables_Table_0" role="link" data-dt-idx="9"
+                                   tabindex="0" class="page-link">10</a>
+                            </li>
+                            <li class="paginate_button page-item next" id="DataTables_Table_0_next">
+                                <a href="#" aria-controls="DataTables_Table_0" role="link" data-dt-idx="next"
+                                   tabindex="0" class="page-link"
+                                   style="padding: .625rem;
+                                              min-width: calc(2rem + calc(0px* 2));
+                                              font-size: .75rem;
+                                              line-height: 1;">Siguiente</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

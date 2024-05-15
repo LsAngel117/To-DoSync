@@ -11,42 +11,13 @@
 
 <div class="container-xxl flex-grow-1 container-p-y" layout:fragment="taskList">
 
-    <div class="card">
-
-        <div class="table-responsive text-nowrap">
-        <div class="card-header">
-            <h5 class="card-title" th:text="${titulo}"> UwU</h5>
-        </div>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Título</th>
-                <th>Prioridad</th>
-                <th>Fecha de Creación</th>
-                <th>Fecha de Vencimiento</th>
-                <th>Categoría</th>
-                <th>Estado</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="task : ${tasksList}">
-                <td th:text="${task.title}"></td>
-                <td th:text="${task.priority}"></td>
-                <td th:text="${task.creationDate}"></td>
-                <td th:text="${task.dueDate}"></td>
-                <td th:text="${task.category}"></td>
-                <td th:text="${task.status}"></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    </div>
-
-    <hr class="my-5" />
-
     <h4 class="py-3 mb-4">
         <span class="text-muted fw-light">Visualizar /</span> Lista de Tareas
     </h4>
+
+    <div class="card" th:replace="~{fragments/taskTable::taskTable}"></div>
+
+    <hr class="my-5"/>
 
     <!-- DataTable with Buttons -->
     <div class="card">
@@ -69,62 +40,10 @@
         </div>
     </div>
     <!-- Modal to add new record -->
-    <div class="offcanvas offcanvas-end" id="add-new-record">
-        <div class="offcanvas-header border-bottom">
-            <h5 class="offcanvas-title" id="exampleModalLabel">New Record</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body flex-grow-1">
-            <form class="add-new-record pt-0 row g-2" id="form-add-new-record" onsubmit="return false">
-                <div class="col-sm-12">
-                    <label class="form-label" for="basicFullname">Full Name</label>
-                    <div class="input-group input-group-merge">
-                        <span id="basicFullname2" class="input-group-text"><i class="bx bx-user"></i></span>
-                        <input type="text" id="basicFullname" class="form-control dt-full-name" name="basicFullname" placeholder="John Doe" aria-label="John Doe" aria-describedby="basicFullname2" />
-                    </div>
-                </div>
-                <div class="col-sm-12">
-                    <label class="form-label" for="basicPost">Post</label>
-                    <div class="input-group input-group-merge">
-                        <span id="basicPost2" class="input-group-text"><i class='bx bxs-briefcase'></i></span>
-                        <input type="text" id="basicPost"   name="basicPost" class="form-control dt-post" placeholder="Web Developer" aria-label="Web Developer" aria-describedby="basicPost2" />
-                    </div>
-                </div>
-                <div class="col-sm-12">
-                    <label class="form-label" for="basicEmail">Email</label>
-                    <div class="input-group input-group-merge">
-                        <span class="input-group-text"><i class="bx bx-envelope"></i></span>
-                        <input type="text" id="basicEmail" name="basicEmail" class="form-control dt-email" placeholder="john.doe@example.com" aria-label="john.doe@example.com" />
-                    </div>
-                    <div class="form-text">
-                        You can use letters, numbers & periods
-                    </div>
-                </div>
-                <div class="col-sm-12">
-                    <label class="form-label" for="basicDate">Joining Date</label>
-                    <div class="input-group input-group-merge">
-                        <span id="basicDate2" class="input-group-text"><i class='bx bx-calendar'></i></span>
-                        <input type="text" class="form-control dt-date" id="basicDate" name="basicDate" aria-describedby="basicDate2" placeholder="MM/DD/YYYY" aria-label="MM/DD/YYYY" />
-                    </div>
-                </div>
-                <div class="col-sm-12">
-                    <label class="form-label" for="basicSalary">Salary</label>
-                    <div class="input-group input-group-merge">
-                        <span id="basicSalary2" class="input-group-text"><i class='bx bx-dollar'></i></span>
-                        <input type="number" id="basicSalary" name="basicSalary" class="form-control dt-salary" placeholder="12000" aria-label="12000" aria-describedby="basicSalary2" />
-                    </div>
-                </div>
-                <div class="col-sm-12">
-                    <button type="submit" class="btn btn-primary data-submit me-sm-3 me-1">Submit</button>
-                    <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="offcanvas">Cancel</button>
-                </div>
-            </form>
-
-        </div>
-    </div>
+    <div class="offcanvas offcanvas-end" id="add-new-record" th:replace="~{fragments/addTask::addTask}"></div>
     <!--/ DataTable with Buttons -->
 
-    <hr class="my-5" />
+    <hr class="my-5"/>
 
     <!-- Contextual Classes -->
 
@@ -156,7 +75,7 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Lilian Fuller">
-                                <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/5.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                             <li
                                     data-bs-toggle="tooltip"
@@ -164,7 +83,7 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Sophia Wilkerson">
-                                <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/6.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                             <li
                                     data-bs-toggle="tooltip"
@@ -172,14 +91,15 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Christina Parker">
-                                <img src="../assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/7.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                         </ul>
                     </td>
                     <td><span class="badge bg-label-primary me-1">Active</span></td>
                     <td>
                         <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                    data-bs-toggle="dropdown">
                                 <i class="bx bx-dots-vertical-rounded"></i>
                             </button>
                             <div class="dropdown-menu">
@@ -195,7 +115,8 @@
                 </tr>
                 <tr class="table-active">
                     <td>
-                        <i class="bx bxl-react bx-sm text-info me-3"></i> <span class="fw-medium">React Project</span>
+                        <i class="bx bxl-react bx-sm text-info me-3"></i> <span
+                            class="fw-medium">React Project</span>
                     </td>
                     <td>Barry Hunter</td>
                     <td>
@@ -206,7 +127,7 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Lilian Fuller">
-                                <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/5.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                             <li
                                     data-bs-toggle="tooltip"
@@ -214,7 +135,7 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Sophia Wilkerson">
-                                <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/6.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                             <li
                                     data-bs-toggle="tooltip"
@@ -222,14 +143,15 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Christina Parker">
-                                <img src="../assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/7.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                         </ul>
                     </td>
                     <td><span class="badge bg-label-success me-1">Completed</span></td>
                     <td>
                         <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                    data-bs-toggle="dropdown">
                                 <i class="bx bx-dots-vertical-rounded"></i>
                             </button>
                             <div class="dropdown-menu">
@@ -257,7 +179,7 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Lilian Fuller">
-                                <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/5.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                             <li
                                     data-bs-toggle="tooltip"
@@ -265,7 +187,7 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Sophia Wilkerson">
-                                <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/6.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                             <li
                                     data-bs-toggle="tooltip"
@@ -273,14 +195,15 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Christina Parker">
-                                <img src="../assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/7.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                         </ul>
                     </td>
                     <td><span class="badge bg-label-primary me-1">Active</span></td>
                     <td>
                         <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                    data-bs-toggle="dropdown">
                                 <i class="bx bx-dots-vertical-rounded"></i>
                             </button>
                             <div class="dropdown-menu">
@@ -308,7 +231,7 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Lilian Fuller">
-                                <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/5.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                             <li
                                     data-bs-toggle="tooltip"
@@ -316,7 +239,7 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Sophia Wilkerson">
-                                <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/6.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                             <li
                                     data-bs-toggle="tooltip"
@@ -324,14 +247,15 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Christina Parker">
-                                <img src="../assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/7.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                         </ul>
                     </td>
                     <td><span class="badge bg-label-info me-1">Scheduled</span></td>
                     <td>
                         <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                    data-bs-toggle="dropdown">
                                 <i class="bx bx-dots-vertical-rounded"></i>
                             </button>
                             <div class="dropdown-menu">
@@ -359,7 +283,7 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Lilian Fuller">
-                                <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/5.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                             <li
                                     data-bs-toggle="tooltip"
@@ -367,7 +291,7 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Sophia Wilkerson">
-                                <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/6.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                             <li
                                     data-bs-toggle="tooltip"
@@ -375,14 +299,15 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Christina Parker">
-                                <img src="../assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/7.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                         </ul>
                     </td>
                     <td><span class="badge bg-label-warning me-1">Pending</span></td>
                     <td>
                         <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                    data-bs-toggle="dropdown">
                                 <i class="bx bx-dots-vertical-rounded"></i>
                             </button>
                             <div class="dropdown-menu">
@@ -410,7 +335,7 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Lilian Fuller">
-                                <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/5.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                             <li
                                     data-bs-toggle="tooltip"
@@ -418,7 +343,7 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Sophia Wilkerson">
-                                <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/6.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                             <li
                                     data-bs-toggle="tooltip"
@@ -426,14 +351,15 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Christina Parker">
-                                <img src="../assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/7.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                         </ul>
                     </td>
                     <td><span class="badge bg-label-primary me-1">Active</span></td>
                     <td>
                         <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                    data-bs-toggle="dropdown">
                                 <i class="bx bx-dots-vertical-rounded"></i>
                             </button>
                             <div class="dropdown-menu">
@@ -449,7 +375,8 @@
                 </tr>
                 <tr class="table-warning">
                     <td>
-                        <i class="bx bxl-react bx-sm text-info me-3"></i> <span class="fw-medium">React Custom</span>
+                        <i class="bx bxl-react bx-sm text-info me-3"></i> <span
+                            class="fw-medium">React Custom</span>
                     </td>
                     <td>Ted Richer</td>
                     <td>
@@ -460,7 +387,7 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Lilian Fuller">
-                                <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/5.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                             <li
                                     data-bs-toggle="tooltip"
@@ -468,7 +395,7 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Sophia Wilkerson">
-                                <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/6.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                             <li
                                     data-bs-toggle="tooltip"
@@ -476,14 +403,15 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Christina Parker">
-                                <img src="../assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/7.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                         </ul>
                     </td>
                     <td><span class="badge bg-label-info me-1">Scheduled</span></td>
                     <td>
                         <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                    data-bs-toggle="dropdown">
                                 <i class="bx bx-dots-vertical-rounded"></i>
                             </button>
                             <div class="dropdown-menu">
@@ -511,7 +439,7 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Lilian Fuller">
-                                <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/5.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                             <li
                                     data-bs-toggle="tooltip"
@@ -519,7 +447,7 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Sophia Wilkerson">
-                                <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/6.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                             <li
                                     data-bs-toggle="tooltip"
@@ -527,14 +455,15 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Christina Parker">
-                                <img src="../assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/7.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                         </ul>
                     </td>
                     <td><span class="badge bg-label-warning me-1">Pending</span></td>
                     <td>
                         <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                    data-bs-toggle="dropdown">
                                 <i class="bx bx-dots-vertical-rounded"></i>
                             </button>
                             <div class="dropdown-menu">
@@ -562,7 +491,7 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Lilian Fuller">
-                                <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/5.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                             <li
                                     data-bs-toggle="tooltip"
@@ -570,7 +499,7 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Sophia Wilkerson">
-                                <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/6.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                             <li
                                     data-bs-toggle="tooltip"
@@ -578,14 +507,15 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Christina Parker">
-                                <img src="../assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/7.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                         </ul>
                     </td>
                     <td><span class="badge bg-label-success me-1">Completed</span></td>
                     <td>
                         <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                    data-bs-toggle="dropdown">
                                 <i class="bx bx-dots-vertical-rounded"></i>
                             </button>
                             <div class="dropdown-menu">
@@ -613,7 +543,7 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Lilian Fuller">
-                                <img src="../assets/img/avatars/5.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/5.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                             <li
                                     data-bs-toggle="tooltip"
@@ -621,7 +551,7 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Sophia Wilkerson">
-                                <img src="../assets/img/avatars/6.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/6.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                             <li
                                     data-bs-toggle="tooltip"
@@ -629,14 +559,15 @@
                                     data-bs-placement="top"
                                     class="avatar avatar-xs pull-up"
                                     title="Christina Parker">
-                                <img src="../assets/img/avatars/7.png" alt="Avatar" class="rounded-circle" />
+                                <img src="/static/images/img/avatars/7.png" alt="Avatar" class="rounded-circle"/>
                             </li>
                         </ul>
                     </td>
                     <td><span class="badge bg-label-success me-1">Completed</span></td>
                     <td class="rounded-end-bottom">
                         <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                    data-bs-toggle="dropdown">
                                 <i class="bx bx-dots-vertical-rounded"></i>
                             </button>
                             <div class="dropdown-menu">

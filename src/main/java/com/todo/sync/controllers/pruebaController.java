@@ -16,6 +16,11 @@ public class pruebaController {
         return "pages/panel";
     }
 
+    @GetMapping("calendar")
+    public String appCalendar(){
+        return "pages/calendar";
+    }
+
     /*@GetMapping("tasklist")
     public String taskList() {
         return "pages/taskList";

@@ -42,6 +42,9 @@
     <link rel="stylesheet" href="/static/css/vendor/libs/perfect-scrollbar.css"/>
     <link rel="stylesheet" href="/static/css/vendor/libs/typeahead.css" />
     <link rel="stylesheet" href="/static/css/vendor/libs/apex-charts.css"/>
+    <link rel="stylesheet" href="/static/css/vendor/libs/fullcalendar.css" />
+    <link rel="stylesheet" href="/static/css/vendor/libs/select2.css" />
+    <link rel="stylesheet" href="/static/css/vendor/libs/editor.css" />
 
     <link rel="stylesheet" href="/static/css/datatables/datatables.bootstrap5.css">
     <link rel="stylesheet" href="/static/css/datatables/responsive.bootstrap5.css">
@@ -55,6 +58,8 @@
     <link rel="stylesheet" href="/static/css/vendor/libs/form-validation.css"/>
 
     <!-- Page CSS -->
+    <link rel="stylesheet" href="/static/css/vendor/pages/app-calendar.css" />
+    <link rel="stylesheet" href="/static/css/vendor/pages/page-taskList.css"/>
 
     <!-- Helpers -->
     <script src="/static/js/vendor/helpers.js"></script>
@@ -79,9 +84,10 @@
 
             <!-- Content wrapper -->
             <div class="content-wrapper">
+
                 <!-- Content -->
-                <!-- <div th:replace="~{pages/panelContent::panel}"></div> -->
                 <div layout:fragment="panel"></div>
+                <div layout:fragment="calendar"></div>
                 <div layout:fragment="taskList"></div>
                 <!-- / Content -->
 
@@ -114,7 +120,8 @@
 
 <!-- Vendors JS -->
 <script src="/static/js/vendor/libs/apexcharts.js"></script>
-
+<script src="/static/js/vendor/libs/fullcalendar.js"></script>
+<script src="/static/js/vendor/libs/select2.js"></script>
 <script src="/static/js/datatables/datatables-bootstrap5.js"></script>
 <!-- Flat Picker -->
 <script src="/static/js/vendor/libs/moment.js"></script>
@@ -130,6 +137,8 @@
 
 <!-- Page JS -->
 <script src="/static/js/dashboards-analytics.js"></script>
+<script src="/static/js/app-calendar-events.js"></script>
+<script src="/static/js/app-calendar.js"></script>
 <script src="/static/js/datatables/tables-datatables-basic.js"></script>
 
 </body>
