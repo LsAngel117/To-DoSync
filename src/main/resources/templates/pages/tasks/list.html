@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layoutPanel.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de tareas | To-DoSync</title>
+
+    <script src="/js/alerts.js"></script>
+</head>
+<body>
+
+<div th:if="${success}" class="alert alert-success" th:text="${success}"></div>
+
+<div class="container-xxl flex-grow-1 container-p-y" layout:fragment="taskList">
+
+    <h4 class="py-3 mb-4">
+        <span class="text-muted fw-light">Visualizar /</span> Lista de Tareas
+    </h4>
+
+    <div class="card" th:replace="~{fragments/taskTable::taskTable}"></div>
+
+    <hr class="my-5"/>
+
+    <!-- DataTable with Buttons -->
+    <div class="card">
+        <div class="card-datatable table-responsive">
+            <table class="datatables-basic table border-top">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th>id</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Date</th>
+                    <th>Salary</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <!-- Modal to add new record -->
+
+    <!--/ DataTable with Buttons -->
+
+    <hr class="my-5"/>
+
+</div>
+
+</body>
+</html>

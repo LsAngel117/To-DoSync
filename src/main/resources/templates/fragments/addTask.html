@@ -1,66 +1,94 @@
-<!DOCTYPE html>
-<html lang="es"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<div class="offcanvas offcanvas-end" id="add-new-record" th:fragment="addTask">
-    <div class="offcanvas-header border-bottom">
-        <h5 class="offcanvas-title" id="exampleModalLabel">Nueva tarea</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    <!DOCTYPE html>
+    <html lang="es"
+          xmlns:th="http://www.thymeleaf.org"
+          xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+    <div class="offcanvas offcanvas-end" id="addEventSidebar"
+         aria-labelledby="addEventSidebarLabel" th:fragment="addTask">
+        <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title mb-2" id="addEventSidebarLabel"
+                th:text="${task != null && task.id == null} ? 'Nueva Tarea' : 'Editar Tarea'">Nueva tarea</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <form th:action="@{/addTask}" th:object="${task}" method="post" class="event-form pt-0">
+                <div class="mb-3">
+
+                    <input type="hidden" th:field="*{id}" th:value="${task.id}"/>
+
+                    <label class="form-label" for="title">Título</label>
+                    <input type="text" class="form-control" id="title" th:field="*{title}"
+                           th:errorclass="'form-control alert-danger'"
+                           placeholder="Título de la tarea"/>
+                    <small class="form-text text-danger" th:if="${#fields.hasErrors('title')}"
+                           th:errors="*{title}"></small>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="eventLabel">Categoría</label>
+                    <select class="select2 select-event-label form-select" id="eventLabel" th:field="*{category}">
+                        <option data-label="primary" value="Trabajo" selected>Trabajo</option>
+                        <option data-label="danger" value="Estudios">Estudios</option>
+                        <option data-label="warning" value="Familia">Familia</option>
+                        <option data-label="success" value="Personal">Personal</option>
+                        <option data-label="info" value="Otros">Otros</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="priority">Prioridad</label>
+                    <select class="select2 form-select" id="priority" th:field="*{priority}">
+                        <option value="Baja">Baja</option>
+                        <option value="Media">Media</option>
+                        <option value="Alta">Alta</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="creationDate">Fecha inicio</label>
+                    <input type="text" class="form-control" id="creationDate" th:field="*{creationDate}"
+                           th:errorclass="'form-control alert-danger'"
+                           placeholder="AAAA-MM-DD"/>
+                    <small class="form-text text-danger" th:if="${#fields.hasErrors('creationDate')}"
+                           th:errors="*{creationDate}"></small>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="dueDate">Fecha vencimiento</label>
+                    <input type="text" class="form-control" id="dueDate" th:field="*{dueDate}"
+                           th:errorclass="'form-control alert-danger'"
+                           placeholder="AAAA-MM-DD"/>
+                    <small class="form-text text-danger" th:if="${#fields.hasErrors('dueDate')}"
+                           th:errors="*{dueDate}"></small>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="status">Estado</label>
+                    <select class="select2 select-event-label form-select" id="status" th:field="*{status}">
+                        <option data-label="Pendiente" value="Pendiente" selected>Pendiente</option>
+                        <option data-label="danger" value="Gestión adicional">Gestión adicional</option>
+                        <option data-label="warning" value="Solucionada">Solucionada</option>
+                        <option data-label="success" value="Completada">Completada</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="description">Description</label>
+                    <textarea class="form-control" id="description" th:field="*{description}"></textarea>
+                </div>
+                <div class="mb-3 d-flex justify-content-sm-between justify-content-start my-4">
+                    <div>
+                        <button type="submit" class="btn btn-primary btn-add-event me-sm-3 me-1">Crear</button>
+                        <button type="reset" class="btn btn-label-secondary btn-cancel me-sm-0 me-1"
+                                data-bs-dismiss="offcanvas">Cancelar
+                        </button>
+                    </div>
+                    <div>
+                        <button class="btn btn-label-danger btn-delete-event d-none">Borrar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-    <div class="offcanvas-body flex-grow-1">
-        <form class="add-new-record pt-0 row g-2" id="form-add-new-record" onsubmit="return false">
-            <div class="col-sm-12">
-                <label class="form-label" for="basicFullname">TÍTULO</label>
-                <div class="input-group input-group-merge">
-                    <span id="basicFullname2" class="input-group-text"><i class="bx bx-user"></i></span>
-                    <input type="text" id="basicFullname" class="form-control dt-full-name" name="basicFullname"
-                           placeholder="John Doe" aria-label="John Doe" aria-describedby="basicFullname2"/>
-                </div>
-            </div>
-
-            <div class="col-sm-12">
-                <label class="form-label" for="basicFullname">Avr</label>
-                <div class="input-group input-group-merge">
-                    <span class="input-group-text"><i class="bx bx-user"></i></span>
-                    <input type="text" class="form-control dt-full-name" name="basicFullname"
-                           placeholder="John Doe" aria-label="John Doe" aria-describedby="basicFullname2"/>
-                </div>
-            </div>
-
-            <div class="col-sm-12">
-                <label class="form-label" for="basicDate">Joining Date</label>
-                <div class="input-group input-group-merge">
-                    <span id="basicDate2" class="input-group-text"><i class='bx bx-calendar'></i></span>
-                    <input type="text" class="form-control dt-date" id="basicDate" name="basicDate"
-                           aria-describedby="basicDate2" placeholder="MM/DD/YYYY" aria-label="MM/DD/YYYY"/>
-                </div>
-            </div>
-
-            <div class="col-sm-12">
-                <label class="form-label" for="basicSalary">Salary</label>
-                <div class="input-group input-group-merge">
-                    <span id="basicSalary2" class="input-group-text"><i class='bx bx-dollar'></i></span>
-                    <input type="number" id="basicSalary" name="basicSalary" class="form-control dt-salary"
-                           placeholder="12000" aria-label="12000" aria-describedby="basicSalary2"/>
-                </div>
-            </div>
-            <div class="col-sm-12">
-                <button type="submit" class="btn btn-primary data-submit me-sm-3 me-1">Submit</button>
-                <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="offcanvas">Cancel</button>
-            </div>
-        </form>
-
-    </div>
-</div>
-<!--<div class="col-sm-12">
-    <button type="submit" class="btn btn-primary data-submit me-sm-3 me-1" data-bs-dismiss="offcanvas">Submit</button>
-    <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="offcanvas">Cancel
-    </button>
-</div> -->
-</body>
-</html>
+    </body>
+    </html>

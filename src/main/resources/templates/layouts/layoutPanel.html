@@ -67,6 +67,7 @@
     <!-- <script src="/static/js/vendor/template-customizer.js"></script> -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="/static/js/config.js"></script>
+    <script src="/static/js/form-ajax.js"></script>
 </head>
 <body>
 <!-- Layout wrapper -->
@@ -86,9 +87,16 @@
             <div class="content-wrapper">
 
                 <!-- Content -->
-                <div layout:fragment="panel"></div>
+                <div layout:fragment="dashboard"></div>
+                <div layout:fragment="formProject"></div>
+                <div layout:fragment="formTask"></div>
                 <div layout:fragment="calendar"></div>
+                <div layout:fragment="projectList"></div>
                 <div layout:fragment="taskList"></div>
+
+                <!-- Modal to add new record -->
+                <div class="offcanvas offcanvas-end" id="addEventSidebar"
+                     aria-labelledby="addEventSidebarLabel" th:replace="~{fragments/addTask::addTask}"></div>
                 <!-- / Content -->
 
             <!-- Footer -->

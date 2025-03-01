@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="projectTable">
+    <h5 class="mb-4" th:text="${titulo}">UwU</h5>
+    <div class="table-responsive text-nowrap">
+        <table class="table table-bordered">
+            <thead class="table-dark">
+            <tr>
+                <th>Proyecto</th>
+                <th>Fecha creación</th>
+                <th>Usuarios</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+            <tr th:each="project : ${projectsList}"
+                th:class="${project.status == 'Activo'} ? 'table-info' : (${project.status == 'Completo'}
+                ? 'table-success' : 'table-warning')">
+                <td th:text="${project.name}">
+                    <i class="bx bxl-sketch bx-sm text-warning me-3"></i>
+                    <span class="fw-medium"></span>
+                </td>
+                <td th:text="${project.creationDate}"></td>
+                <td>
+                    <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
+                        <li
+                                data-bs-toggle="tooltip"
+                                data-popup="tooltip-custom"
+                                data-bs-placement="top"
+                                class="avatar avatar-xs pull-up"
+                                title="Lilian Fuller">
+                            <img src="/static/images/img/avatars/5.png" alt="Avatar" class="rounded-circle"/>
+                        </li>
+                        <li
+                                data-bs-toggle="tooltip"
+                                data-popup="tooltip-custom"
+                                data-bs-placement="top"
+                                class="avatar avatar-xs pull-up"
+                                title="Sophia Wilkerson">
+                            <img src="/static/images/img/avatars/6.png" alt="Avatar" class="rounded-circle"/>
+                        </li>
+                        <li
+                                data-bs-toggle="tooltip"
+                                data-popup="tooltip-custom"
+                                data-bs-placement="top"
+                                class="avatar avatar-xs pull-up"
+                                title="Christina Parker">
+                            <img src="/static/images/img/avatars/7.png" alt="Avatar" class="rounded-circle"/>
+                        </li>
+                    </ul>
+                </td>
+                <td th:text="${project.status}"><span class="badge bg-label-primary me-1"></span></td>
+                <td>
+                    <div class="dropdown">
+                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                data-bs-toggle="dropdown">
+                            <i class="bx bx-dots-vertical-rounded"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" th:href="@{/editProject/{id}(id=${project.id})}">
+                                <i class="bx bx-edit-alt me-1"></i> Editar</a>
+                            <a class="dropdown-item" th:href="@{/deleteProject/{id}(id=${project.id})}"
+                               onclick="return confirm('¿Estás seguro de eliminar el proyecto?');">
+                                <i class="bx bx-trash me-1"></i> Borrar</a
+                            >
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

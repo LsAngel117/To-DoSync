@@ -21,10 +21,11 @@
                                     aria-expanded="false"><span><i class="bx bx-export me-sm-1"></i> <span
                                     class="d-none d-sm-inline-block">Exportar</span></span></button>
                         </div>
-                        <button class="btn btn-secondary create-new btn-primary" tabindex="0"
-                                aria-controls="DataTables_Table_0"
-                                type="button"><span><i class="bx bx-plus me-sm-1"></i> <span
-                                class="d-none d-sm-inline-block">Añadir nueva tarea</span></span>
+                        <button class="btn btn-secondary create-new btn-primary" data-bs-toggle="offcanvas"
+                                data-bs-target="#addEventSidebar" aria-controls="addEventSidebar">
+                                <span><i class="bx bx-plus me-sm-1"></i>
+                                    <span class="d-none d-sm-inline-block">Añadir nueva tarea</span>
+                                </span>
                         </button>
                     </div>
                 </div>
@@ -71,28 +72,39 @@
                 </tr>
                 </thead>
                 <tbody style="white-space: nowrap;">
-                <tr class="odd" th:each="task : ${tasksList}">
-                    <td th:text="${task.id}"></td>
+                <tr th:each="task : ${tasksList}">
+                    <!-- th:class="${task.category == 'Trabajo'} ? 'table-primary'
+                             : (${task.category == 'Estudios'} ? 'table-danger'
+                             : (${task.category == 'Familia'} ? 'table-warning'
+                             : (${task.category == 'Personal'} ? 'table-success'
+                             : 'table-info')))" -->
+                <td th:text="${task.id}"></td>
                     <td th:text="${task.title}"></td>
                     <td th:text="${task.priority}"></td>
                     <td th:text="${task.creationDate}"></td>
                     <td th:text="${task.dueDate}"></td>
                     <td th:text="${task.category}"></td>
-                    <td th:text="${task.status}"></td>
+                    <td th:text="${task.status}"
+                        th:class="${task.status == 'Pendiente'} ? 'bg-label-warning'
+                               : (${task.status == 'Solucionada'} ? 'bg-label-primary'
+                               : (${task.status == 'Completada'} ? 'bg-label-success'
+                               : 'bg-label-info'))">
+                    </td>
                     <td>
                         <div class="dropdown">
                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
                                     data-bs-toggle="dropdown">
                                 <i class="bx bx-dots-vertical-rounded"></i>
                             </button>
-                            <a href="javascript:;" class="btn btn-sm btn-icon item-edit">
+                            <a th:href="@{/editTask/{id}(id=${task.id})}" class="btn btn-sm btn-icon item-edit">
                                 <i class="bx bxs-edit"></i>
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="javascript:void(0);">
+                                <a th:href="@{/editTask/{id}(id=${task.id})}" class="dropdown-item">
                                     <i class="bx bx-edit-alt me-1"></i> Detalles</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-danger" href="javascript:void(0);">
+                                <a class="dropdown-item text-danger" th:href="@{/deleteTask/{id}(id=${task.id})}"
+                                   onclick="return confirm('¿Estás seguro de eliminar la tarea?');">
                                     <i class="bx bx-trash me-1"></i> Borrar</a>
                             </div>
                         </div>

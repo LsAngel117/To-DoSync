@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layoutPanel.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Planear tarea | To-DoSync</title>
+</head>
+<body>
+
+<div class="container-xxl flex-grow-1 container-p-y" layout:fragment="formTask">
+    <h4 class="py-3 mb-4">
+        <span class="text-muted fw-light">Planear /</span> Tarea
+    </h4>
+
+    <div class="col-xxl">
+        <div class="card mb-4">
+            <div class="card-header d-flex align-items-center justify-content-between">
+                <h5 class="mb-0" th:text="${task.id == null} ? 'Nueva Tarea' : 'Editar Tarea'">Basic Layout</h5>
+                <small class="text-muted float-end"
+                       th:text="${task.id == null} ? 'Rellene los campos' : 'Detalles de la tarea'"></small>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/addTask}" th:object="${task}" method="post">
+                    <input type="hidden" th:field="*{id}"/>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="basic-default-name">Título</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="basic-default-name"
+                                   th:field="*{title}"
+                                   th:errorclass="'form-control alert-danger'"
+                                   placeholder="Título de la tarea">
+                            <small class="form-text text-danger" th:if="${#fields.hasErrors('title')}"
+                                   th:errors="*{title}"></small>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="Category">Categoría</label>
+                        <div class="col-sm-10">
+                            <select class="form-select" id="Category" th:field="*{category}">
+                                <option value="Trabajo" selected>Trabajo</option>
+                                <option value="Estudios">Estudios</option>
+                                <option value="Familia">Familia</option>
+                                <option value="Personal">Personal</option>
+                                <option value="Otros">Otros</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="Priority">Prioridad</label>
+                        <div class="col-sm-10">
+                            <select class="form-select" id="Priority" th:field="*{priority}">
+                                <option value="Baja">Baja</option>
+                                <option value="Media">Media</option>
+                                <option value="Alta">Alta</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="CreationDate">Fecha inicio</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="CreationDate"
+                                   th:field="*{creationDate}"
+                                   th:errorclass="'form-control alert-danger'"
+                                   placeholder="AAAA-MM-DD"/>
+                            <small class="form-text text-danger" th:if="${#fields.hasErrors('creationDate')}"
+                                   th:errors="*{creationDate}"></small>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="DueDate">Fecha vencimiento</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="DueDate"
+                                   th:field="*{dueDate}"
+                                   th:errorclass="'form-control alert-danger'"
+                                   placeholder="AAAA-MM-DD"/>
+                            <small class="form-text text-danger" th:if="${#fields.hasErrors('dueDate')}"
+                                   th:errors="*{dueDate}"></small>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="Status">Estado</label>
+                        <div class="col-sm-10">
+                            <select class="form-select" id="Status" th:field="*{status}">
+                                <option value="Pendiente" selected>Pendiente</option>
+                                <option value="Gestión adicional">Gestión adicional</option>
+                                <option value="Solucionada">Solucionada</option>
+                                <option value="Completada">Completada</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="basic-default-message">Descripción</label>
+                        <div class="col-sm-10">
+                            <textarea id="basic-default-message" class="form-control"
+                                      th:field="*{description}"
+                                      placeholder="Descripción y/o para tener en cuenta en la tarea"
+                                      aria-label="Hi, Do you have a moment to talk Joe?"
+                                      aria-describedby="basic-icon-default-message2"></textarea>
+                        </div>
+                    </div>
+                    <div class="row justify-content-end">
+                        <div class="col-sm-10">
+                            <button type="submit" class="btn btn-primary"
+                                    th:text="${task.id == null} ? 'Crear' : 'Actualizar'">Crear
+                            </button>
+                            <button type="reset" class="btn btn-label-secondary btn-cancel me-sm-0 me-1"
+                                    >Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
